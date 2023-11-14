@@ -22,7 +22,6 @@ import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
-import java.util.LinkedHashMap;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -299,8 +298,7 @@ public class EnumUtils {
      * @since 3.13.0
      */
     public static <E extends Enum<E>, K> Map<K, E> getEnumMap(final Class<E> enumClass, final Function<E, K> keyFunction) {
-        return Stream.of(enumClass.getEnumConstants()).collect(Collectors.toMap(keyFunction::apply, Function.identity(),
-                (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        return Stream.of(enumClass.getEnumConstants()).collect(Collectors.toMap(keyFunction::apply, Function.identity()));
     }
 
     /**
